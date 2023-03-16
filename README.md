@@ -1,4 +1,4 @@
-# infra
+# IHR infra
 
 This is a list of IHR resources and what run there
 
