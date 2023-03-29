@@ -1,0 +1,43 @@
+# Edit this file to introduce tasks to be run by cron.
+# 
+# Each task to run has to be defined through a single line
+# indicating with different fields when the task will be run
+# and what command to run for the task
+# 
+# To define the time you can provide concrete values for
+# minute (m), hour (h), day of month (dom), month (mon),
+# and day of week (dow) or use '*' in these fields (for 'any').# 
+# Notice that tasks will be started based on the cron's system
+# daemon's notion of time and timezones.
+# 
+# Output of the crontab jobs (including errors) is sent through
+# email to the user the crontab file belongs to (unless redirected).
+# 
+# For example, you can run a backup of all your user accounts
+# at 5 a.m every week with:
+# 0 5 * * 1 tar -zcf /var/backups/home.tgz /home/
+# 
+# For more information see the manual pages of crontab(5) and cron(8)
+# 
+# m h  dom mon dow   command
+
+# Fetch new ip2asn database
+0 12 1 * * cd /home/romain/Projects/perso/ip2asn; git pull
+
+# Raclette on Kafka
+*/5 * * * * python3 /home/romain/Projects/perso/kafka-toolbox/atlas/producers/traceroute.py -C /home/romain/Projects/perso/kafka-toolbox/atlas/producers/ihr-global.conf
+*/30 * * * * cd /home/romain/Projects/perso/raclette/; python3 raclette/raclette.py -C conf/ihr-global.conf
+*/30 * * * * cd /home/romain/Projects/perso/raclette/; python3 raclette/raclette.py -C conf/ihr-lastmile.conf
+29 0 * * * pkill -f raclette
+
+## Update IPmap and probe info cache
+0 15 * * * cd /home/romain/Projects/perso/raclette/cache/; wget https://ftp.ripe.net/ripe/ipmap/geolocations-latest; mv geolocations-latest geolocations_ipmap.csv.bz2
+0 15 * * * cd /home/romain/Projects/perso/raclette/; rm cache/probe_info.json; python3 raclette/tools.py
+
+## Update Atlas measurement IDs for raclette
+25 0 * * sun cd /home/romain/Projects/perso/kafka-toolbox/atlas/producer/; python3 getMsmIds.py > ihr-global.conf_new; ./cp_larger.sh
+
+## Prefix AS Hegemony
+20 6 * * *  cd /home/romain/Projects/perso/as-hegemony/ihr/; python3 batch_analysis.py prefix 4 config_daily_ipv4_prefix.json
+20 10 * * *  cd /home/romain/Projects/perso/as-hegemony/ihr/; python3 batch_analysis.py prefix 6 config_daily_ipv6_prefix.json
+

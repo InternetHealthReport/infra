@@ -1,0 +1,43 @@
+# Edit this file to introduce tasks to be run by cron.
+# 
+# Each task to run has to be defined through a single line
+# indicating with different fields when the task will be run
+# and what command to run for the task
+# 
+# To define the time you can provide concrete values for
+# minute (m), hour (h), day of month (dom), month (mon),
+# and day of week (dow) or use '*' in these fields (for 'any').# 
+# Notice that tasks will be started based on the cron's system
+# daemon's notion of time and timezones.
+# 
+# Output of the crontab jobs (including errors) is sent through
+# email to the user the crontab file belongs to (unless redirected).
+# 
+# For example, you can run a backup of all your user accounts
+# at 5 a.m every week with:
+# 0 5 * * 1 tar -zcf /var/backups/home.tgz /home/
+# 
+# For more information see the manual pages of crontab(5) and cron(8)
+# 
+# m h  dom mon dow   command
+
+# update ip2asn database
+0 12 1 * * cd /home/romain/Projects/perso/ip2asn; git pull 
+
+# Disco
+## Burst detection
+0 0 * * * python3 /home/romain/Projects/perso/disco-kafka/src/ihrDailyDisco.py
+## Fetch disco data
+0 0 * * * python3 /home/romain/Projects/perso/disco-kafka/src/ihrDailyDataFetch.py
+## Update probe information
+0 3 * * * python3 /home/romain/Projects/perso/disco-kafka/src/probeDataProducer.py
+
+## Country hegemony
+15 0 * * * cd /home/romain/Projects/perso/country-as-hegemony/; rm -rf data/ihr/delegated-extended*; rm -rf cache; wget https://www.nro.net/wp-content/uploads/apnic-uploads/delegated-extended -P data/ihr/ ; python3 delegated/processDelegatedFile.py data/ihr/delegated-extended; python3 delegated/push2kafka.py data/ihr/delegated-extended_results/
+
+## Clean zombie processes
+0 0 * * * killall --quiet --older-than 168h python3
+
+# AS hegemony IPv6
+31 4 * * *  cd /home/romain/Projects/perso/as-hegemony/ihr/; python3 batch_analysis.py all 6 config_daily_ipv6_asn.conf
+
