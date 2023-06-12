@@ -1,0 +1,37 @@
+#No comment
+MAILTO=romain@psg.com
+
+#No comment
+SHELL=/usr/bin/zsh
+
+#No comment
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin  
+
+#No comment
+#1 0 * * *       cd /home/romain/Projects/perso/ashash/; python2 scripts/ihrDaily.py 4
+#10 12 * * *      cd /home/romain/Projects/perso/ashash/; python2 scripts/ihrDaily.py 6
+#@reboot sleep 300 && python3 /home/romain/Projects/perso/kafka-toolbox/psql/consumers/network-delay.py
+#@reboot sleep 300 && python3 /home/romain/Projects/perso/kafka-toolbox/psql/consumers/ASHegemony.py 4
+#@reboot sleep 300 && python3 /home/romain/Projects/perso/kafka-toolbox/psql/consumers/CountryHegemony.py 4
+
+# Update ip2asn
+0 12 1 * * cd /home/romain/Projects/perso/ip2asn; git pull; python3 monthlydb.py
+
+
+# Store AS hegemony data
+0 5 * * *       cd /home/romain/Projects/perso/kafka-toolbox/psql/consumers; python ASHegemony.py ihr_hegemony 4 
+0 5 * * *       cd /home/romain/Projects/perso/kafka-toolbox/psql/consumers; python ASHegemony.py ihr_hegemony_v6 6 
+0 18 * * *      cd /home/romain/Projects/perso/kafka-toolbox/psql/consumers; python ASHegemony_prefix.py ihr_hegemony_prefix 4 ; python ASHegemony_prefix.py ihr_hegemony_prefix_v6 6 
+
+# Update RPKI, IRR, delegated files
+5 0 * * *       rov --update 1.1.1.0/24 13335
+
+# Daily dumps
+0 8 * * * cd /home/romain/Projects/perso/psql-dumps; python dumpit.py --config configs/ROV.json
+0 12 * * * cd /home/romain/Projects/perso/psql-dumps; python dumpit.py --config configs/ASHegemony_v4_global.json
+15 12 * * * cd /home/romain/Projects/perso/psql-dumps; python dumpit.py --config configs/ASHegemony_v4_local.json
+
+45 12 * * * cd /home/romain/Projects/perso/psql-dumps; rsync -a dumps/ihr/ ihr-archive.iijlab.net:/var/www/html/ihr > log/rsync.log
+
+# Update AS Names
+30 0 * * * cd /home/romain/Projects/perso/AS-names; python asnames.py
