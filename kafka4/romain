@@ -27,7 +27,7 @@ SHELL=/bin/zsh
 HOST=kafka4
 
 # Backup this crontab
-3 * * * * cd /home/romain/Projects/ihr/infra/; crontab -l > $HOST/romain; git add $HOST/romain; git commit -m 'sync'; git push
+3 * * * * cd /home/romain/Projects/ihr/infra/; crontab -l > $HOST/romain; git pull; git add $HOST/romain; git commit -m 'sync'; git push
 
 # update ip2asn database
 0 12 1 * * cd /home/romain/Projects/perso/ip2asn; git pull 
