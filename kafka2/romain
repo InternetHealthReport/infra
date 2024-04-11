@@ -24,7 +24,7 @@
 HOST=kafka2
 
 # Backup this crontab
-3 * * * * cd /home/romain/Projects/ihr/infra/; crontab -l > $HOST/romain; git add $HOST/romain; git commit -m 'sync'; git push
+3 * * * * cd /home/romain/Projects/ihr/infra/; crontab -l > $HOST/romain; git pull; git add $HOST/romain; git commit -m 'sync'; git push
 
 # Fetch new ip2asn database
 0 12 1 * * cd /home/romain/Projects/perso/ip2asn; git pull
@@ -44,5 +44,5 @@ HOST=kafka2
 25 0 * * sun export KAFKA_HOST='localhost:9092'; cd /home/romain/Projects/perso/kafka-toolbox/atlas/producers/; python3 getMsmIds.py
 
 ## Prefix AS Hegemony
-#20 6 * * *  cd /home/romain/Projects/perso/as-hegemony/ihr/; python3 batch_analysis.py prefix 4 config_daily_ipv4_prefix.json
+20 6 * * *  cd /home/romain/Projects/perso/as-hegemony/ihr/; python3 batch_analysis.py prefix 4 config_daily_ipv4_prefix.json
 #20 6 * * *  cd /home/romain/Projects/perso/as-hegemony/ihr/; python3 batch_analysis.py prefix 6 config_daily_ipv6_prefix.json
