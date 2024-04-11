@@ -4,30 +4,14 @@ This is a list of IHR resources and what run there
 
 ## hardware
 - Kafka and analysis modules
-    - 4 servers (kafka1, kafka2, kafka2, kafka4)
+    - 6 servers (kafka1, kafka2, kafka2, kafka4, kafka5, kafka6)
 
 - 1 server for the postgres database (eric)
 
-- coming soon: 2 more servers for Kafka/analysis modules
-
-### kafka1
-
-
-### kafka2
-
-
-### Kafka3
-
-
-### kafka4
-
-
-
-
 
 ## virtual machines
-Web services:
-- ihr.iijlab.net
-- ihr-archive.iijlab.net
-- iyp.iijlab.net
-
+- ihr.iijlab.net: IHR main website
+- ihr-archive.iijlab.net: IHR archive website
+- iyp.iijlab.net: Internet Yellow Pages main website
+- sandbox.ihr.live: DNS ninja
+- yunohost.ihr.live: mail server for ihr.live
