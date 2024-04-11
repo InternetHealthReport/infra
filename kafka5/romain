@@ -1,0 +1,65 @@
+# Edit this file to introduce tasks to be run by cron.
+# 
+# Each task to run has to be defined through a single line
+# indicating with different fields when the task will be run
+# and what command to run for the task
+# 
+# To define the time you can provide concrete values for
+# minute (m), hour (h), day of month (dom), month (mon),
+# and day of week (dow) or use '*' in these fields (for 'any').
+# 
+# Notice that tasks will be started based on the cron's system
+# daemon's notion of time and timezones.
+# 
+# Output of the crontab jobs (including errors) is sent through
+# email to the user the crontab file belongs to (unless redirected).
+# 
+# For example, you can run a backup of all your user accounts
+# at 5 a.m every week with:
+# 0 5 * * 1 tar -zcf /var/backups/home.tgz /home/
+# 
+# For more information see the manual pages of crontab(5) and cron(8)
+# 
+# m h  dom mon dow   command
+
+HOST=kafka5
+
+# Backup this crontab
+3 * * * * cd /home/romain/Projects/ihr/infra/; crontab -l > $HOST/romain; git add $HOST/romain; git commit -m 'sync'; git push
+
+# update ip2asn database
+0 12 1 * * cd /home/romain/Projects/perso/ip2asn; git pull 
+
+# BGP data
+## RIB
+##50 1 * * * python3 /home/romain/Projects/perso/kafka-toolbox/bgp/producers/bgpstream2.py -t ribs --collector route-views.jinx
+#10 0 * * * docker run --rm --name route-views2-rib --env KAFKA_HOST="kafka1:9092"  --add-host=kafka1:10.0.1.12  internethealthreport/bgp -t ribs --collector route-views2
+#11 0 * * * docker run --rm --name route-views3-rib --env KAFKA_HOST="kafka1:9092"  --add-host=kafka1:10.0.1.12  internethealthreport/bgp -t ribs --collector route-views3
+#12 0 * * * docker run --rm --name route-views4-rib --env KAFKA_HOST="kafka1:9092"  --add-host=kafka1:10.0.1.12  internethealthreport/bgp -t ribs --collector route-views4
+#13 0 * * * docker run --rm --name route-views5-rib --env KAFKA_HOST="kafka1:9092"  --add-host=kafka1:10.0.1.12  internethealthreport/bgp -t ribs --collector route-views5
+#14 0 * * * docker run --rm --name route-views.chicago-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t ribs --collector route-views.chicago
+#15 0 * * * docker run --rm --name route-views.rio-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t ribs --collector route-views.rio
+#16 0 * * * docker run --rm --name route-views.sg-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t ribs --collector route-views.sg
+#17 0 * * * docker run --rm --name route-views.sydney-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t ribs --collector route-views.sydney
+#18 0 * * * docker run --rm --name route-views.napafrica-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t ribs --collector route-views.napafrica
+#20 0 * * * docker run --rm --name route-views.linx-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t ribs --collector route-views.linx
+#
+#29 0 * * * docker run --rm --name rrc00-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t ribs --collector rrc00
+#24 0 * * * docker run --rm --name rrc01-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t ribs --collector rrc01
+#24 0 * * * docker run --rm --name rrc04-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t ribs --collector rrc04
+#21 0 * * * docker run --rm --name rrc06-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t ribs --collector rrc06
+#25 0 * * * docker run --rm --name rrc10-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t ribs --collector rrc10
+#26 0 * * * docker run --rm --name rrc11-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t ribs --collector rrc11
+#26 0 * * * docker run --rm --name rrc12-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t ribs --collector rrc12
+#27 0 * * * docker run --rm --name rrc13-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t ribs --collector rrc13
+#22 0 * * * docker run --rm --name rrc14-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t ribs --collector rrc14
+#28 0 * * * docker run --rm --name rrc15-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t ribs --collector rrc15
+#25 0 * * * docker run --rm --name rrc16-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t ribs --collector rrc16
+#26 0 * * * docker run --rm --name rrc20-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t ribs --collector rrc20
+#23 0 * * * docker run --rm --name rrc23-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t ribs --collector rrc23
+#27 0 * * * docker run --rm --name rrc24-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t ribs --collector rrc24
+#27 0 * * * docker run --rm --name rrc25-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t ribs --collector rrc25
+#28 0 * * * docker run --rm --name rrc26-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t ribs --collector rrc26
+
+## Compute BC score for AS Hegemony
+40 1 * * *  cd /home/romain/Projects/perso/as-hegemony/ihr/; python3 batch_analysis.py bcscore 4 config_daily_ipv4_asn.json
