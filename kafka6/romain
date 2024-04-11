@@ -22,6 +22,11 @@
 # 
 # m h  dom mon dow   command
 
+HOST=kafka6
+
+# Backup this crontab
+3 * * * * cd /home/romain/Projects/ihr/infra/; crontab -l > $HOST/romain; git add $HOST/romain; git commit -m 'sync'; git push
+
 # update ip2asn database
 0 12 1 * * cd /home/romain/Projects/perso/ip2asn; git pull 
 
@@ -64,4 +69,3 @@
 #27 0 * * * docker run --rm --name rrc24-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t ribs --collector rrc24
 #22 0 * * * docker run --rm --name rrc25-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t ribs --collector rrc25
 #28 0 * * * docker run --rm --name rrc26-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t ribs --collector rrc26
-
