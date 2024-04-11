@@ -23,8 +23,8 @@
 
 HOST=kafka3
 
-### Backup this crontab
-3 * * * * crontab -l > /home/romain/Projects/ihr/infra/$HOST/romain; git commit -am 'sync'; git push
+# Backup this crontab
+3 * * * * cd /home/romain/Projects/ihr/infra/; crontab -l > $HOST/romain; git pull; git add $HOST/romain; git commit -m 'sync'; git push
 
 # update ip2asn database
 0 12 1 * * cd /home/romain/Projects/perso/ip2asn; git pull 
