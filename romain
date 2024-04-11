@@ -21,6 +21,11 @@
 # 
 # m h  dom mon dow   command
 
+HOST=kafka3
+
+### Backup this crontab
+3 * * * * crontab -l > /home/romain/Projects/ihr/infra/$HOST/romain; git commit -am 'sync'; git push
+
 # update ip2asn database
 0 12 1 * * cd /home/romain/Projects/perso/ip2asn; git pull 
 
@@ -39,5 +44,4 @@
 0 0 * * * killall --quiet --older-than 168h python3
 
 # AS hegemony IPv6
-31 4 * * *  cd /home/romain/Projects/perso/as-hegemony/ihr/; python3 batch_analysis.py all 6 config_daily_ipv6_asn.conf
-
+31 4 * * *  cd /home/romain/Projects/perso/as-hegemony/ihr/; python3 batch_analysis.py all 6 config_daily_ipv6_asn.json
