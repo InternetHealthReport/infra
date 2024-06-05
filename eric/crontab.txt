@@ -35,14 +35,14 @@ HOST_ALIAS=eric
 5 0 * * *       rov --update 1.1.1.0/24 13335
 
 # Daily dumps
-0 8 * * * cd /home/romain/Projects/perso/psql-dumps; python dumpit.py --config configs/ROV.json
-0 12 * * * cd /home/romain/Projects/perso/psql-dumps; python dumpit.py --config configs/ASHegemony_v4_global.json
-10 12 * * * cd /home/romain/Projects/perso/psql-dumps; python dumpit.py --config configs/ASHegemony_v6_global.json
-15 12 * * * cd /home/romain/Projects/perso/psql-dumps; python dumpit.py --config configs/ASHegemony_v4_local.json
-30 12 * * * cd /home/romain/Projects/perso/psql-dumps; python dumpit.py --config configs/ASHegemony_v6_local.json
-0 0 * * TUE cd /home/romain/Projects/perso/psql-dumps; python dumpit.py --config configs/tr_hegemony.json
+0 8 * * * cd /home/romain/Projects/perso/psql-dump; python dumpit.py --config configs/ROV.json
+0 12 * * * cd /home/romain/Projects/perso/psql-dump; python dumpit.py --config configs/ASHegemony_v4_global.json
+10 12 * * * cd /home/romain/Projects/perso/psql-dump; python dumpit.py --config configs/ASHegemony_v6_global.json
+15 12 * * * cd /home/romain/Projects/perso/psql-dump; python dumpit.py --config configs/ASHegemony_v4_local.json
+30 12 * * * cd /home/romain/Projects/perso/psql-dump; python dumpit.py --config configs/ASHegemony_v6_local.json
+0 0 * * TUE cd /home/romain/Projects/perso/psql-dump; python dumpit.py --config configs/tr_hegemony.json
 
-45 12 * * * cd /home/romain/Projects/perso/psql-dumps; rsync -a dumps/ihr/ ihr-archive.iijlab.net:/var/www/html/ihr > log/rsync.log
+45 12 * * * cd /home/romain/Projects/perso/psql-dump; rsync -a dumps/ihr/ ihr-archive.iijlab.net:/var/www/html/ihr > log/rsync.log
 
 # Update AS Names
 30 0 * * * cd /home/romain/Projects/perso/AS-names; python asnames.py
