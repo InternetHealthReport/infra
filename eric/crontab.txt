@@ -5,7 +5,7 @@ MAILTO=romain@psg.com
 SHELL=/usr/bin/zsh
 
 #No comment
-PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin  
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/home/romain/.local/bin
 
 KAFKA_HOST=kafka1:9092 
 DB_CONNECTION_STRING="host=127.0.0.1 dbname=ihr"
