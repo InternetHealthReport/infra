@@ -8,21 +8,10 @@ SHELL=/usr/bin/zsh
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/home/romain/.local/bin
 
 HOST_ALIAS=eric
-KAFKATB_ENV=/home/romain/Projects/perso/kafka-toolbox/ihr.env
+KAFKATB_ENV=/home/romain/Projects/ihr/kafka-toolbox/ihr.env
 
 # Backup this crontab
 3 * * * * cd /home/romain/Projects/ihr/infra/; crontab -l > $HOST_ALIAS/romain; git add $HOST_ALIAS/romain; git commit -m 'sync'; git push
-
-#No comment
-#1 0 * * *       cd /home/romain/Projects/perso/ashash/; python2 scripts/ihrDaily.py 4
-#10 12 * * *      cd /home/romain/Projects/perso/ashash/; python2 scripts/ihrDaily.py 6
-#@reboot sleep 300 && python3 /home/romain/Projects/perso/kafka-toolbox/psql/consumers/network-delay.py
-#@reboot sleep 300 && python3 /home/romain/Projects/perso/kafka-toolbox/psql/consumers/ASHegemony.py 4
-#@reboot sleep 300 && python3 /home/romain/Projects/perso/kafka-toolbox/psql/consumers/CountryHegemony.py 4
-
-# Update ip2asn
-0 12 1 * * cd /home/romain/Projects/perso/ip2asn; git pull; python3 monthlydb.py
-
 
 # Store AS hegemony data
 # Doesn't work if started before we have data there?
@@ -34,14 +23,14 @@ KAFKATB_ENV=/home/romain/Projects/perso/kafka-toolbox/ihr.env
 # 5 0 * * *       rov --update 1.1.1.0/24 13335
 
 # Daily dumps
-0 8 * * * cd /home/romain/Projects/perso/psql-dump; python3 dumpit.py --config configs/ROV.json
-0 12 * * * cd /home/romain/Projects/perso/psql-dump; python3 dumpit.py --config configs/ASHegemony_v4_global.json
-10 12 * * * cd /home/romain/Projects/perso/psql-dump; python3 dumpit.py --config configs/ASHegemony_v6_global.json
-15 12 * * * cd /home/romain/Projects/perso/psql-dump; python3 dumpit.py --config configs/ASHegemony_v4_local.json
-30 12 * * * cd /home/romain/Projects/perso/psql-dump; python3 dumpit.py --config configs/ASHegemony_v6_local.json
-0 0 * * TUE cd /home/romain/Projects/perso/psql-dump; python3 dumpit.py --config configs/tr_hegemony.json
+0 8 * * * cd /home/romain/Projects/ihr/psql-dump; python3 dumpit.py --config configs/ROV.json
+0 12 * * * cd /home/romain/Projects/ihr/psql-dump; python3 dumpit.py --config configs/ASHegemony_v4_global.json
+10 12 * * * cd /home/romain/Projects/ihr/psql-dump; python3 dumpit.py --config configs/ASHegemony_v6_global.json
+15 12 * * * cd /home/romain/Projects/ihr/psql-dump; python3 dumpit.py --config configs/ASHegemony_v4_local.json
+30 12 * * * cd /home/romain/Projects/ihr/psql-dump; python3 dumpit.py --config configs/ASHegemony_v6_local.json
+0 0 * * TUE cd /home/romain/Projects/ihr/psql-dump; python3 dumpit.py --config configs/tr_hegemony.json
 
-45 12 * * * cd /home/romain/Projects/perso/psql-dump; rsync -a dumps/ihr/ ihr-archive.iijlab.net:/var/www/html/ihr > log/rsync.log
+45 12 * * * cd /home/romain/Projects/ihr/psql-dump; rsync -a dumps/ihr/ ihr-archive.iijlab.net:/var/www/html/ihr > log/rsync.log
 
 # Update AS Names
-30 0 * * * cd /home/romain/Projects/perso/AS-names; python3 asnames.py
+30 0 * * * cd /home/romain/Projects/ihr/AS-names; python3 asnames.py
