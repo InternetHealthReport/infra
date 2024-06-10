@@ -7,9 +7,8 @@ SHELL=/usr/bin/zsh
 #No comment
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/home/romain/.local/bin
 
-KAFKA_HOST=kafka1:9092 
-DB_CONNECTION_STRING="host=10.0.1.155 dbname=ihr user=romain"
 HOST_ALIAS=eric
+KAFKATB_ENV=/home/romain/Projects/perso/kafka-toolbox/ihr.env
 
 # Backup this crontab
 3 * * * * cd /home/romain/Projects/ihr/infra/; crontab -l > $HOST_ALIAS/romain; git add $HOST_ALIAS/romain; git commit -m 'sync'; git push
@@ -27,12 +26,12 @@ HOST_ALIAS=eric
 
 # Store AS hegemony data
 # Doesn't work if started before we have data there?
-10 2 * * *      docker run --rm --name ihr_hegemony_sink_4 --add-host=kafka1:10.0.1.12 internethealthreport/psql_consumers ASHegemony.py ihr_hegemony 4
-0 5 * * *       docker run --rm --name ihr_hegemony_sink_6 --add-host=kafka1:10.0.1.12 internethealthreport/psql_consumers ASHegemony.py ihr_hegemony_v6 6
-0 20 * * *      docker run --rm --name ihr_hegemony_prefix_sink_6 --add-host=kafka1:10.0.1.12 internethealthreport/psql_consumers ASHegemony_prefix.py ihr_hegemony_prefix_ipv6 6 ; docker run --rm --name ihr_hegemony_prefix_sink_4 --add-host=kafka1:10.0.1.12 internethealthreport/psql_consumers ihr_hegemony_prefix_ipv4 4 
+10 2 * * *      docker run --rm --name ihr_hegemony_sink_4 --env-file $KAFKATB_ENV internethealthreport/psql_consumers ASHegemony.py ihr_hegemony 4
+0 5 * * *       docker run --rm --name ihr_hegemony_sink_6 --env-file $KAFKATB_ENV internethealthreport/psql_consumers ASHegemony.py ihr_hegemony_v6 6
+0 20 * * *      docker run --rm --name ihr_hegemony_prefix_sink_6 --env-file $KAFKATB_ENV internethealthreport/psql_consumers ASHegemony_prefix.py ihr_hegemony_prefix_ipv6 6 ; docker run --rm --name ihr_hegemony_prefix_sink_4 --env-file $KAFKATB_ENV internethealthreport/psql_consumers ihr_hegemony_prefix_ipv4 4 
 
-# Update RPKI, IRR, delegated files
-5 0 * * *       rov --update 1.1.1.0/24 13335
+# Update RPKI, IRR, delegated files (not needed if ihr_hegemony_prefix run in docker)
+# 5 0 * * *       rov --update 1.1.1.0/24 13335
 
 # Daily dumps
 0 8 * * * cd /home/romain/Projects/perso/psql-dump; python3 dumpit.py --config configs/ROV.json
