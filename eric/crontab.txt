@@ -8,7 +8,7 @@ SHELL=/usr/bin/zsh
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/home/romain/.local/bin
 
 KAFKA_HOST=kafka1:9092 
-DB_CONNECTION_STRING="host=127.0.0.1 dbname=ihr"
+DB_CONNECTION_STRING="host=10.0.1.155 dbname=ihr user=romain"
 HOST_ALIAS=eric
 
 # Backup this crontab
@@ -27,9 +27,9 @@ HOST_ALIAS=eric
 
 # Store AS hegemony data
 # Doesn't work if started before we have data there?
-10 2 * * *      cd /home/romain/Projects/perso/kafka-toolbox/psql/consumers; python3 ASHegemony.py ihr_hegemony 4
-0 5 * * *       cd /home/romain/Projects/perso/kafka-toolbox/psql/consumers; python3 ASHegemony.py ihr_hegemony_v6 6 
-0 20 * * *      cd /home/romain/Projects/perso/kafka-toolbox/psql/consumers; python3 ASHegemony_prefix.py ihr_hegemony_prefix_ipv6 6 ; python3 ASHegemony_prefix.py ihr_hegemony_prefix_ipv4 4 
+10 2 * * *      docker run --rm --name ihr_hegemony_sink_4 --add-host=kafka1:10.0.1.12 internethealthreport/psql_consumers ASHegemony.py ihr_hegemony 4
+0 5 * * *       docker run --rm --name ihr_hegemony_sink_6 --add-host=kafka1:10.0.1.12 internethealthreport/psql_consumers ASHegemony.py ihr_hegemony_v6 6
+0 20 * * *      docker run --rm --name ihr_hegemony_prefix_sink_6 --add-host=kafka1:10.0.1.12 internethealthreport/psql_consumers ASHegemony_prefix.py ihr_hegemony_prefix_ipv6 6 ; docker run --rm --name ihr_hegemony_prefix_sink_4 --add-host=kafka1:10.0.1.12 internethealthreport/psql_consumers ihr_hegemony_prefix_ipv4 4 
 
 # Update RPKI, IRR, delegated files
 5 0 * * *       rov --update 1.1.1.0/24 13335
