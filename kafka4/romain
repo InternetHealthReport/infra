@@ -107,5 +107,5 @@ HOST=kafka4
 */15 * * * * docker run --rm --name rrc26-updates --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t updates --collector rrc26
 
 # IYP dump archiving
-35 * * * * cd /home/romain/Projects/ihr/internet-yellow-pages/; rsync -a dumps/ ihr-archive.iijlab.net:/var/www/html/ihr/iyp > rsync.log
+35 * * * * cd /home/romain/Projects/ihr/internet-yellow-pages/; rsync -a dumps/ /export/nas0/ihr/ihr-archive/ihr/iyp
 
