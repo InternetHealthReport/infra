@@ -40,7 +40,7 @@ HOST=kafka4
 0 0 * * * cd /home/romain/Projects/perso/kafka-toolbox/generic/detector; python3 anomalydetector.py atlasdelaydetector.conf 
 
 # IYP weekly run
-0 6 1,8,15,22 * * cd /home/romain/Projects/ihr/internet-yellow-pages; source venv/bin/activate; sudo chown -R romain:romain dumps/*; python3 create_db.py;  sudo rm -rf neo4j/tmp/*
+0 6 1,8,15,22 * * cd /home/romain/Projects/ihr/internet-yellow-pages; source venv/bin/activate; sudo chown -R romain:romain dumps/*; nice ionice -n 5 python3 create_db.py;  sudo rm -rf neo4j/tmp/*
 
 # AS Hegemony for IPv6 prefixes
 15 6 * * *  cd /home/romain/Projects/perso/as-hegemony/ihr/; python3 batch_analysis.py prefix 6 config_daily_ipv6_prefix.json
