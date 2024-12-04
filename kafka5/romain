@@ -62,4 +62,4 @@ HOST=kafka5
 #28 0 * * * docker run --rm --name rrc26-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t ribs --collector rrc26
 
 ## Compute BC score for AS Hegemony
-40 1 * * *  cd /home/romain/Projects/perso/as-hegemony/ihr/; python3 batch_analysis.py bcscore 4 config_daily_ipv4_asn.json
+#40 1 * * *  cd /home/romain/Projects/perso/as-hegemony/ihr/; python3 batch_analysis.py bcscore 4 config_daily_ipv4_asn.json
