@@ -32,5 +32,5 @@ HOST=kafka1
 ## AS Hegemony
 #10 4 * * * cd /home/romain/Projects/perso/kafka-toolbox/bgp/producers/; python3 /home/romain/Projects/perso/kafka-toolbox/bgp/producers/check_ribs.py 
 ##30 4 * * *  cd /home/romain/Projects/perso/ashash; python2 scripts/ihrDailyKafka.py 4
-50 1 * * *  cd /home/romain/Projects/perso/as-hegemony/ihr/; python3 batch_analysis.py hege 4 config_daily_ipv4_asn.json
+#50 1 * * *  cd /home/romain/Projects/perso/as-hegemony/ihr/; python3 batch_analysis.py hege 4 config_daily_ipv4_asn.json
 ##31 4 * * *  cd /home/romain/Projects/perso/as-hegemony/ihr/ipv6; python3 daily-run.py all
