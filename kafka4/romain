@@ -48,63 +48,65 @@ HOST=kafka4
 # BGP data
 # RIB
 #50 1 * * * python3 /home/romain/Projects/perso/kafka-toolbox/bgp/producers/bgpstream2.py -t ribs --collector route-views.jinx
-#10 0 * * * docker run --rm --name route-views2-rib --env KAFKA_HOST="kafka1:9092"  --add-host=kafka1:10.0.1.12  internethealthreport/bgp -t ribs --collector route-views2
-11 0 * * * docker run --rm --name route-views3-rib --env KAFKA_HOST="kafka1:9092"  --add-host=kafka1:10.0.1.12  internethealthreport/bgp -t ribs --collector route-views3
-#12 0 * * * docker run --rm --name route-views4-rib --env KAFKA_HOST="kafka1:9092"  --add-host=kafka1:10.0.1.12  internethealthreport/bgp -t ribs --collector route-views4
-13 0 * * * docker run --rm --name route-views5-rib --env KAFKA_HOST="kafka1:9092"  --add-host=kafka1:10.0.1.12  internethealthreport/bgp -t ribs --collector route-views5
-#14 0 * * * docker run --rm --name route-views.chicago-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t ribs --collector route-views.chicago
-15 0 * * * docker run --rm --name route-views.rio-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t ribs --collector route-views.rio
-#16 0 * * * docker run --rm --name route-views.sg-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t ribs --collector route-views.sg
-#17 0 * * * docker run --rm --name route-views.sydney-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t ribs --collector route-views.sydney
-#18 0 * * * docker run --rm --name route-views.napafrica-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t ribs --collector route-views.napafrica
-# 20 0 * * * docker run --rm --name route-views.linx-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t ribs --collector route-views.linx
+#10 0 * * * docker run --rm --name route-views2-rib --env KAFKA_HOST="kafka1:9092"  --add-host=kafka1:10.0.1.176  internethealthreport/bgp -t ribs --collector route-views2
+11 0 * * * docker run --rm --name route-views3-rib --env KAFKA_HOST="kafka1:9092"  --add-host=kafka1:10.0.1.176  internethealthreport/bgp -t ribs --collector route-views3
+#12 0 * * * docker run --rm --name route-views4-rib --env KAFKA_HOST="kafka1:9092"  --add-host=kafka1:10.0.1.176  internethealthreport/bgp -t ribs --collector route-views4
+13 0 * * * docker run --rm --name route-views5-rib --env KAFKA_HOST="kafka1:9092"  --add-host=kafka1:10.0.1.176  internethealthreport/bgp -t ribs --collector route-views5
+#14 0 * * * docker run --rm --name route-views.chicago-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.176 internethealthreport/bgp -t ribs --collector route-views.chicago
+15 0 * * * docker run --rm --name route-views.rio-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.176 internethealthreport/bgp -t ribs --collector route-views.rio
+#16 0 * * * docker run --rm --name route-views.sg-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.176 internethealthreport/bgp -t ribs --collector route-views.sg
+#17 0 * * * docker run --rm --name route-views.sydney-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.176 internethealthreport/bgp -t ribs --collector route-views.sydney
+#18 0 * * * docker run --rm --name route-views.napafrica-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.176 internethealthreport/bgp -t ribs --collector route-views.napafrica
+# 20 0 * * * docker run --rm --name route-views.linx-rib --env
+# KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.176 internethealthreport/bgp -t ribs --collector route-views.linx
 
-#29 0 * * * docker run --rm --name rrc00-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t ribs --collector rrc00
-23 0 * * * docker run --rm --name rrc01-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t ribs --collector rrc01
-24 0 * * * docker run --rm --name rrc04-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t ribs --collector rrc04
-21 0 * * * docker run --rm --name rrc06-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t ribs --collector rrc06
-25 0 * * * docker run --rm --name rrc10-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t ribs --collector rrc10
-26 0 * * * docker run --rm --name rrc11-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t ribs --collector rrc11
-#26 0 * * * docker run --rm --name rrc12-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t ribs --collector rrc12 # big collector but quite redundant with the rest
-27 0 * * * docker run --rm --name rrc13-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t ribs --collector rrc13
-#22 0 * * * docker run --rm --name rrc14-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t ribs --collector rrc14
-28 0 * * * docker run --rm --name rrc15-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t ribs --collector rrc15
-25 0 * * * docker run --rm --name rrc16-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t ribs --collector rrc16
-26 0 * * * docker run --rm --name rrc20-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t ribs --collector rrc20
-23 0 * * * docker run --rm --name rrc23-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t ribs --collector rrc23
-#27 0 * * * docker run --rm --name rrc24-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t ribs --collector rrc24
-22 0 * * * docker run --rm --name rrc25-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t ribs --collector rrc25
-#28 0 * * * docker run --rm --name rrc26-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t ribs --collector rrc26
+#29 0 * * * docker run --rm --name rrc00-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.176 internethealthreport/bgp -t ribs --collector rrc00
+23 0 * * * docker run --rm --name rrc01-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.176 internethealthreport/bgp -t ribs --collector rrc01
+24 0 * * * docker run --rm --name rrc04-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.176 internethealthreport/bgp -t ribs --collector rrc04
+#21 0 * * * docker run --rm --name rrc06-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.176 internethealthreport/bgp -t ribs --collector rrc06
+25 0 * * * docker run --rm --name rrc10-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.176 internethealthreport/bgp -t ribs --collector rrc10
+26 0 * * * docker run --rm --name rrc11-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.176 internethealthreport/bgp -t ribs --collector rrc11
+#26 0 * * * docker run --rm --name rrc12-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.176 internethealthreport/bgp -t ribs --collector rrc12 # big collector but quite redundant with the rest
+27 0 * * * docker run --rm --name rrc13-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.176 internethealthreport/bgp -t ribs --collector rrc13
+#22 0 * * * docker run --rm --name rrc14-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.176 internethealthreport/bgp -t ribs --collector rrc14
+28 0 * * * docker run --rm --name rrc15-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.176 internethealthreport/bgp -t ribs --collector rrc15
+25 0 * * * docker run --rm --name rrc16-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.176 internethealthreport/bgp -t ribs --collector rrc16
+26 0 * * * docker run --rm --name rrc20-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.176 internethealthreport/bgp -t ribs --collector rrc20
+23 0 * * * docker run --rm --name rrc23-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.176 internethealthreport/bgp -t ribs --collector rrc23
+#27 0 * * * docker run --rm --name rrc24-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.176 internethealthreport/bgp -t ribs --collector rrc24
+22 0 * * * docker run --rm --name rrc25-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.176 internethealthreport/bgp -t ribs --collector rrc25
+#28 0 * * * docker run --rm --name rrc26-rib --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.176 internethealthreport/bgp -t ribs --collector rrc26
 
 # UPDATES
 #*/15 * * * * python3 /home/romain/Projects/perso/kafka-toolbox/bgp/producers/bgpstream2.py -t updates --collector route-views.jinx
-#*/15 * * * * docker run --rm --name route-views2-updates --env KAFKA_HOST="kafka1:9092"  --add-host=kafka1:10.0.1.12  internethealthreport/bgp -t updates --collector route-views2
-#*/15 * * * * docker run --rm --name route-views3-updates --env KAFKA_HOST="kafka1:9092"  --add-host=kafka1:10.0.1.12  internethealthreport/bgp -t updates --collector route-views3
-#*/15 * * * * docker run --rm --name route-views4-updates --env KAFKA_HOST="kafka1:9092"  --add-host=kafka1:10.0.1.12  internethealthreport/bgp -t updates --collector route-views4
-*/15 * * * * docker run --rm --name route-views5-updates --env KAFKA_HOST="kafka1:9092"  --add-host=kafka1:10.0.1.12  internethealthreport/bgp -t updates --collector route-views5
-#*/15 * * * * docker run --rm --name route-views.chicago-updates --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t updates --collector route-views.chicago
-#*/15 * * * * docker run --rm --name route-views.rio-updates --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t updates --collector route-views.rio
-#*/15 * * * * docker run --rm --name route-views.sg-updates --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t updates --collector route-views.sg
-#*/15 * * * * docker run --rm --name route-views.sydney-updates --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t updates --collector route-views.sydney
-#*/15 * * * * docker run --rm --name route-views.napafrica-updates --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t updates --collector route-views.napafrica
-# */15 * * * * docker run --rm --name route-views.linx-updates --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t updates --collector route-views.linx
+#*/15 * * * * docker run --rm --name route-views2-updates --env KAFKA_HOST="kafka1:9092"  --add-host=kafka1:10.0.1.176  internethealthreport/bgp -t updates --collector route-views2
+*/15 * * * * docker run --rm --name route-views3-updates --env KAFKA_HOST="kafka1:9092"  --add-host=kafka1:10.0.1.176  internethealthreport/bgp -t updates --collector route-views3
+#*/15 * * * * docker run --rm --name route-views4-updates --env KAFKA_HOST="kafka1:9092"  --add-host=kafka1:10.0.1.176  internethealthreport/bgp -t updates --collector route-views4
+*/15 * * * * docker run --rm --name route-views5-updates --env KAFKA_HOST="kafka1:9092"  --add-host=kafka1:10.0.1.176  internethealthreport/bgp -t updates --collector route-views5
+#*/15 * * * * docker run --rm --name route-views.chicago-updates --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.176 internethealthreport/bgp -t updates --collector route-views.chicago
+*/15 * * * * docker run --rm --name route-views.rio-updates --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.176 internethealthreport/bgp -t updates --collector route-views.rio
+#*/15 * * * * docker run --rm --name route-views.sg-updates --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.176 internethealthreport/bgp -t updates --collector route-views.sg
+#*/15 * * * * docker run --rm --name route-views.sydney-updates --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.176 internethealthreport/bgp -t updates --collector route-views.sydney
+#*/15 * * * * docker run --rm --name route-views.napafrica-updates --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.176 internethealthreport/bgp -t updates --collector route-views.napafrica
+# */15 * * * * docker run --rm --name route-views.linx-updates --env
+# KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.176 internethealthreport/bgp -t updates --collector route-views.linx
 
-#*/15 * * * * docker run --rm --name rrc00-updates --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t updates --collector rrc00
-*/15 * * * * docker run --rm --name rrc01-updates --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t updates --collector rrc01
-*/15 * * * * docker run --rm --name rrc04-updates --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t updates --collector rrc04
-*/15 * * * * docker run --rm --name rrc06-updates --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t updates --collector rrc06
-*/15 * * * * docker run --rm --name rrc10-updates --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t updates --collector rrc10
-*/15 * * * * docker run --rm --name rrc11-updates --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t updates --collector rrc11
-#*/15 * * * * docker run --rm --name rrc12-updates --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t updates --collector rrc12 # big collector but quite redundant with the rest
-*/15 * * * * docker run --rm --name rrc13-updates --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t updates --collector rrc13
-#*/15 * * * * docker run --rm --name rrc14-updates --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t updates --collector rrc14
-*/15 * * * * docker run --rm --name rrc15-updates --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t updates --collector rrc15
-*/15 * * * * docker run --rm --name rrc16-updates --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t updates --collector rrc16
-*/15 * * * * docker run --rm --name rrc20-updates --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t updates --collector rrc20
-*/15 * * * * docker run --rm --name rrc23-updates --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t updates --collector rrc23
-#*/15 * * * * docker run --rm --name rrc24-updates --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t updates --collector rrc24
-*/15 * * * * docker run --rm --name rrc25-updates --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t updates --collector rrc25
-#*/15 * * * * docker run --rm --name rrc26-updates --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.12 internethealthreport/bgp -t updates --collector rrc26
+#*/15 * * * * docker run --rm --name rrc00-updates --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.176 internethealthreport/bgp -t updates --collector rrc00
+*/15 * * * * docker run --rm --name rrc01-updates --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.176 internethealthreport/bgp -t updates --collector rrc01
+*/15 * * * * docker run --rm --name rrc04-updates --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.176 internethealthreport/bgp -t updates --collector rrc04
+#*/15 * * * * docker run --rm --name rrc06-updates --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.176 internethealthreport/bgp -t updates --collector rrc06 
+*/15 * * * * docker run --rm --name rrc10-updates --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.176 internethealthreport/bgp -t updates --collector rrc10 
+*/15 * * * * docker run --rm --name rrc11-updates --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.176 internethealthreport/bgp -t updates --collector rrc11 
+#*/15 * * * * docker run --rm --name rrc12-updates --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.176 internethealthreport/bgp -t updates --collector rrc12 # big collector but quite redundant with the rest
+*/15 * * * * docker run --rm --name rrc13-updates --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.176 internethealthreport/bgp -t updates --collector rrc13
+#*/15 * * * * docker run --rm --name rrc14-updates --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.176 internethealthreport/bgp -t updates --collector rrc14
+*/15 * * * * docker run --rm --name rrc15-updates --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.176 internethealthreport/bgp -t updates --collector rrc15
+*/15 * * * * docker run --rm --name rrc16-updates --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.176 internethealthreport/bgp -t updates --collector rrc16
+*/15 * * * * docker run --rm --name rrc20-updates --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.176 internethealthreport/bgp -t updates --collector rrc20
+*/15 * * * * docker run --rm --name rrc23-updates --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.176 internethealthreport/bgp -t updates --collector rrc23
+#*/15 * * * * docker run --rm --name rrc24-updates --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.176 internethealthreport/bgp -t updates --collector rrc24
+*/15 * * * * docker run --rm --name rrc25-updates --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.176 internethealthreport/bgp -t updates --collector rrc25
+#*/15 * * * * docker run --rm --name rrc26-updates --env KAFKA_HOST="kafka1:9092" --add-host=kafka1:10.0.1.176 internethealthreport/bgp -t updates --collector rrc26
 
 # IYP dump archiving
 #35 * * * * cd /home/romain/Projects/ihr/internet-yellow-pages/; rsync -a dumps/ /export/nas0/ihr/ihr-archive/ihr/iyp
