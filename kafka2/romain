@@ -44,5 +44,5 @@ HOST=kafka2
 25 0 * * sun export KAFKA_HOST='localhost:9092'; cd /home/romain/Projects/perso/kafka-toolbox/atlas/producers/; python3 getMsmIds.py
 
 ## Prefix AS Hegemony
-20 6 * * *  cd /home/romain/Projects/perso/as-hegemony/ihr/; python3 batch_analysis.py prefix 4 config_daily_ipv4_prefix.json
+#20 6 * * *  cd /home/romain/Projects/perso/as-hegemony/ihr/; python3 batch_analysis.py prefix 4 config_daily_ipv4_prefix.json
 #20 6 * * *  cd /home/romain/Projects/perso/as-hegemony/ihr/; python3 batch_analysis.py prefix 6 config_daily_ipv6_prefix.json
